@@ -1,13 +1,14 @@
 import sys
 from scheduler import PriorityScheduler
+from scheduler import Scheduler
 
 
 shed = PriorityScheduler(
     [1, 2, 3],
     [
-        PriorityScheduler([1, 2, 3], ["a1", "a2", "a3"]),
+        Scheduler(["a1", "a2", "a3"]),
         PriorityScheduler([1, 2], ["b1", "b2"]),
-        PriorityScheduler([1], ["c1"])
+        Scheduler(["c1"])
     ]
 )
 
