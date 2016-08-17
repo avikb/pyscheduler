@@ -1,17 +1,21 @@
 import time
 import pika
 
+
 params = pika.URLParameters('amqp://worker:password@queue/task/')
 connection = pika.BlockingConnection(params)
 channel = connection.channel()
 
 
-while True:
-    try:
-        ok, prop, msg = channel.basic_get(queue='search')
-        print(ok, prop, msg)
-        res = channel.basic_publish('', prop.reply_to, msg)
-        print(res)
-        channel.basic_ack(ok.delivery_tag)
-    except AttributeError:
-        time.sleep(2)
+def on_message(channel, method, props, body):
+    print(method, props, body)
+    channel.basic_publish('', props.reply_to, str(body) + '-ret')
+    channel.basic_ack(delivery_tag=method.delivery_tag)
+
+
+channel.basic_consume(on_message, 'search')
+try:
+    channel.start_consuming()
+except KeyboardInterrupt:
+    channel.stop_consuming()
+connection.close()
