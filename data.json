@@ -3,28 +3,22 @@
         {
             "id": 1,
             "title": "фигня",
-            "priority": "low",
+            "priority": 4,
             "task": [ "o1t1", "o1t2", "o1t3" ]
         },
         {
             "id": 2,
             "title": "нормальный",
-            "priority": "normal",
+            "priority": 2,
             "task": [ "o2t1", "o2t2" ]
         },
         {
             "id": 3,
             "title": "важный",
-            "priority": "high",
+            "priority": 1,
             "task": [ "o3t1" ]
         }
     ],
-
-    "priorities": {
-        "high": 1,
-        "normal": 2,
-        "low": 4
-    },
 
     "proxy": [
         {

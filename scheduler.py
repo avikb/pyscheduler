@@ -12,7 +12,7 @@ class Scheduler:
 
 
 class PriorityScheduler:
-    def __init__(self, priorities, list):
+    def __init__(self, list, priorities):
         if len(priorities) != len(list):
             raise Exception('bad usage')
         self.__list = list
